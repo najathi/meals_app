@@ -4,30 +4,31 @@ import { View, Text, StyleSheet, Button, Platform, FlatList } from 'react-native
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import Colors from '../constants/Colors';
 import MealItem from '../components/mealItem';
+import MealList from '../components/MealList';
 
 const CategoryMealsScreen = props => {
 	//console.log(props);
 
-	const renderMealItems = itemData => (
-		// <View>
-		// 	<Text>{itemData.item.title}</Text>
-		// </View>
+	// const renderMealItems = itemData => (
+	// 	// <View>
+	// 	// 	<Text>{itemData.item.title}</Text>
+	// 	// </View>
 
-		<MealItem
-			title={itemData.item.title}
-			duration={itemData.item.duration}
-			complexity={itemData.item.complexity}
-			affordability={itemData.item.affordability}
-			image={itemData.item.imageUrl}
-			onSelect={() => {
-				props.navigation.navigate({
-					routeName: 'MealDetail',
-					params: {
-						mealId: itemData.item.id
-					}
-				});
-			}} />
-	);
+	// 	<MealItem
+	// 		title={itemData.item.title}
+	// 		duration={itemData.item.duration}
+	// 		complexity={itemData.item.complexity}
+	// 		affordability={itemData.item.affordability}
+	// 		image={itemData.item.imageUrl}
+	// 		onSelect={() => {
+	// 			props.navigation.navigate({
+	// 				routeName: 'MealDetail',
+	// 				params: {
+	// 					mealId: itemData.item.id
+	// 				}
+	// 			});
+	// 		}} />
+	// );
 
 	const catId = props.navigation.getParam('categoryId');
 
@@ -52,12 +53,14 @@ const CategoryMealsScreen = props => {
 		// 	}} />
 		// </View>
 
-		<View style={styles.screen}>
-			<FlatList
-				data={displayedMeals}
-				keyExtractor={(item, index) => item.id}
-				renderItem={renderMealItems} style={{ width: '100%' }} />
-		</View>
+		// <View style={styles.screen}>
+		// 	<FlatList
+		// 		data={displayedMeals}
+		// 		keyExtractor={(item, index) => item.id}
+		// 		renderItem={renderMealItems} style={{ width: '100%' }} />
+		// </View>
+
+		<MealList listData={displayedMeals} navigation={props.navigation} />
 	);
 }
 
@@ -77,11 +80,12 @@ CategoryMealsScreen.navigationOptions = navigationData => {
 }
 
 const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
-	}
+	// screen: {
+	// 	flex: 1,
+	// 	justifyContent: 'center',
+	// 	alignItems: 'center',
+	//  padding: 15
+	// }
 });
 
 export default CategoryMealsScreen;
